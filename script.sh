@@ -1,6 +1,17 @@
 #!/system/bin/sh
 clear
 
+# Mã hash gốc của script
+VERIFY_HASH="d2c2f0e98b3e9b5f2c4a8a9b6c2d9b5f4a6d8c7e9f0b5e3d9a1c4b7f2a5d3e6"
+CURRENT_HASH=$(sha256sum "$0" | awk '{print $1}')
+
+if [ "$CURRENT_HASH" != "$VERIFY_HASH" ]; then
+    echo -e "\033[1;31m⚠ Script đã bị chỉnh sửa! Thoát ngay... ❌\033[0m"
+    exit 1
+fi
+
+echo -e "\033[1;32m✅ Kiểm tra an toàn! Đang tiếp tục...\033[0m"
+
 # Màu sắc
 RED='\033[1;31m'
 GREEN='\033[1;32m'
